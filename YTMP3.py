@@ -16,7 +16,7 @@ def descargarAudio(urlVideo):
         video = YouTube(urlVideo)
         audio = video.streams.filter(only_audio=True).first().download()
         archivoAudio = AudioFileClip(audio)
-        archivoAudio.write_audiofile(f'./Descargas/{video.title}.mp3', bitrate="192k")
+        archivoAudio.write_audiofile(f'./Descargas/{video.title}.mp3', bitrate="192k", logger=None)
         os.remove(f'./{video.title}.m4a')
         labelEstado.config(text="Estado: Audio descargado con éxito.")
         print(f'{obtHFActual()} INFO: Se ha descargado el audio correctamente.')
