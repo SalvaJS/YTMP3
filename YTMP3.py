@@ -10,13 +10,13 @@ def obtHFActual():
 def descargarAudio(urlVideo):
     try:
         labelEstado.config(text="Estado: Descargando...")
-        if not os.path.exists("./Descargas"):
-            os.mkdir("./Descargas")
+        if not os.path.exists("./Canciones descargadas"):
+            os.mkdir("./Canciones descargadas")
         print(f'{obtHFActual()} INFO: Descargando y convirtiendo el vídeo a mp3.')
         video = YouTube(urlVideo)
         audio = video.streams.filter(only_audio=True).first().download()
         archivoAudio = AudioFileClip(audio)
-        archivoAudio.write_audiofile(f'./Descargas/{video.title}.mp3', bitrate="192k", logger=None)
+        archivoAudio.write_audiofile(f'./Canciones descargadas/{video.title}.mp3', bitrate="192k", logger=None)
         os.remove(f'./{video.title}.m4a')
         labelEstado.config(text="Estado: Audio descargado con éxito.")
         print(f'{obtHFActual()} INFO: Se ha descargado el audio correctamente.')
